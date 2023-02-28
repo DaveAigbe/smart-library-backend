@@ -7,7 +7,8 @@ import {getUserId} from "./utils/utils";
 dotenv.config()
 
 const server = new ApolloServer({
-    schema
+    schema,
+    csrfPrevention: false,
 })
 
 const bootstrap = async () => {
