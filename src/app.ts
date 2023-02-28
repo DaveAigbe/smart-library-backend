@@ -8,7 +8,6 @@ dotenv.config()
 
 const server = new ApolloServer({
     schema,
-    csrfPrevention: false,
 })
 
 const bootstrap = async () => {
