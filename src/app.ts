@@ -7,28 +7,28 @@ import {getUserId} from "./utils/utils";
 dotenv.config()
 
 const server = new ApolloServer({
-    schema,
-    introspection: true
+    schema
 })
 
 const bootstrap = async () => {
-    await startStandaloneServer(server, {
-        listen: {port: Number(process.env.API_PORT) || 4000},
-        context: async ({req, res}) => {
+    return startStandaloneServer(server, {
+        // @ts-ignore
+        listen: {port: process.env.PORT || 4000},
+        context: async ({req}) => {
             const token = req.headers.authorization || undefined;
 
             if (!token) {
                 return {currentUserId: undefined}
             }
-            
+
             return {currentUserId: getUserId(token)}
         }
-    }).then((value) => {
-        console.log(`🚀 Server listening on ${value.url}`)
     })
 }
 
 
-bootstrap()
+bootstrap().then((value) => {
+    console.log(`🚀 Server listening on ${value.url}`)
+})
 
 
