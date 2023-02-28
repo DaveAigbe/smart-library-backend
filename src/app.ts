@@ -12,8 +12,7 @@ const server = new ApolloServer({
 
 const bootstrap = async () => {
     return startStandaloneServer(server, {
-        // @ts-ignore
-        listen: {port: process.env.PORT || 4000},
+        listen: {port: Number(process.env.PORT) || 4000},
         context: async ({req}) => {
             const token = req.headers.authorization || undefined;
 
