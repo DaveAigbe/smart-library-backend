@@ -9,7 +9,8 @@
     "url": "www.daveaigbe.live"
   },
   "scripts": {
-    "start": "node dist/src/app",
+    "start": "node ./dist/src/app.js --env=production",
+    "dev": "ts-node-dev src/app.ts",
     "tsc": "tsc"
   },
   "prisma": {
